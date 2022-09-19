@@ -74,3 +74,16 @@ btnHold.addEventListener('click', function() {
 })
 
 btnNew.addEventListener('click', init)
+
+function add(...numbers) {
+    let sum = 0;
+    for(let i = 0; i < numbers.length; i++) {
+        sum += numbers[i];
+    }
+    console.log(sum);
+}
+
+add(2,3,4);
+const x = [2,3,4];
+add(...x);
+console.log('Hello')
