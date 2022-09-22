@@ -95,6 +95,28 @@ const calcDisplayBalance = function(movements) {
 }
 calcDisplayBalance(account1.movements);
 
+
+
+
+const calcDisplaySummary = function(movements) {
+  const incomes = movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes} EUR`;
+
+  const outflows = movements.filter(mov => mov < 0).reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(outflows)} EUR`;
+
+  const interests = movements
+    .filter(mov => mov > 0)
+    .map(deposit => deposit * 1.2 / 100)
+    .filter((int, i, arr) => {
+      return int >= 1;
+    })
+    .reduce((cur, int) => cur + int, 0);
+  console.log(interests);
+  labelSumInterest.textContent = `${interests} EUR`;
+}
+calcDisplaySummary(account1.movements);
+
 const createUsernames = function(accs) {
   accs.forEach(acc => {
     acc.username = acc.owner.toLowerCase().split(' ').map(name => name[0]).join('');
@@ -102,6 +124,23 @@ const createUsernames = function(accs) {
   })
 }
 createUsernames(accounts);
+
+let currentAccount;
+
+btnLogin.addEventListener('click', function(e) {
+  e.preventDefault();
+  // Implement the find method on accounts array
+  currentAccount = accounts.find(acc => {
+    return acc.username === inputLoginUsername.value
+  })
+  console.log(currentAccount);
+
+  if(currentAccount.pin === Number(inputLoginPin.value)) {
+    console.log("LOGGED IN");
+  }
+})
+
+
 
 const deposits = account1.movements.filter(mov => mov > 0);
 console.log(account1.movements);
