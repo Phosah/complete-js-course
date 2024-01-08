@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 ///////////////////////////////////////
 // Coding Challenge #1
 
@@ -20,48 +20,48 @@ TEST DATA FOR 6: Use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Th
 */
 
 const game = {
-    team1: 'Bayern Munich',
-    team2: 'Borrussia Dortmund',
-    players: [
-      [
-        'Neuer',
-        'Pavard',
-        'Martinez',
-        'Alaba',
-        'Davies',
-        'Kimmich',
-        'Goretzka',
-        'Coman',
-        'Muller',
-        'Gnarby',
-        'Lewandowski',
-      ],
-      [
-        'Burki',
-        'Schulz',
-        'Hummels',
-        'Akanji',
-        'Hakimi',
-        'Weigl',
-        'Witsel',
-        'Hazard',
-        'Brandt',
-        'Sancho',
-        'Gotze',
-      ],
+  team1: "Bayern Munich",
+  team2: "Borrussia Dortmund",
+  players: [
+    [
+      "Neuer",
+      "Pavard",
+      "Martinez",
+      "Alaba",
+      "Davies",
+      "Kimmich",
+      "Goretzka",
+      "Coman",
+      "Muller",
+      "Gnarby",
+      "Lewandowski",
     ],
-    score: '4:0',
-    scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-    date: 'Nov 9th, 2037',
-    odds: {
-      team1: 1.33,
-      x: 3.25,
-      team2: 6.5,
-    },
+    [
+      "Burki",
+      "Schulz",
+      "Hummels",
+      "Akanji",
+      "Hakimi",
+      "Weigl",
+      "Witsel",
+      "Hazard",
+      "Brandt",
+      "Sancho",
+      "Gotze",
+    ],
+  ],
+  score: "4:0",
+  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+  date: "Nov 9th, 2037",
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
 };
 
 // 1.
-const [player1, player2] = game.players
+const [player1, player2] = game.players;
 console.log(player1, player2);
 
 // 2.
@@ -73,22 +73,26 @@ const allPlayers = [...player1, ...player2];
 console.log(allPlayers);
 
 // 4.
-const players1Final = ['Thiago', 'Coutinho', 'Perisic', ...player1];
+const players1Final = ["Thiago", "Coutinho", "Perisic", ...player1];
 console.log(players1Final);
 
-5. 
-const {odds: {team1, x: draw, team2}} = game;
+5;
+const {
+  odds: { team1, x: draw, team2 },
+} = game;
 console.log(team1, team2, draw);
 
 // 6.
 function printGoals(...players) {
-    console.log( `The game ended in a dramatic ${game.score} win with goals scored by ${players}`);
+  console.log(
+    `The game ended in a dramatic ${game.score} win with goals scored by ${players}`
+  );
 }
-printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+printGoals("Davies", "Muller", "Lewandowski", "Kimmich");
 printGoals(...game.scored);
 
 // 7.
-team1 < team2 && console.log('Team 1 is more likely to win');
+team1 < team2 && console.log("Team 1 is more likely to win");
 
 ///////////////////////////////////////
 // Coding Challenge #2
@@ -116,7 +120,7 @@ GOOD LUCK 😀
 
 // 1.
 for (const [i, player] of game.scored.entries()) {
-    console.log(`Goal ${i + 1} : ${player}`);
+  console.log(`Goal ${i + 1} : ${player}`);
 }
 
 // 2.
@@ -124,21 +128,21 @@ const odds = Object.values(game.odds);
 let average = 0;
 for (const odd of odds) average += odd;
 console.log(average);
-average /= odds.length
+average /= odds.length;
 console.log(average);
 
-// 3. 
+// 3.
 console.log(Object.entries(game.odds));
 for (const [team, odd] of Object.entries(game.odds)) {
-    const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
-    console.log(`Odd of ${teamStr} ${odd}`)
+  const teamStr = team === "x" ? "draw" : `victory ${game[team]}`;
+  console.log(`Odd of ${teamStr} ${odd}`);
 }
 
 // Bonus.
-const scorers = {}
+const scorers = {};
 for (const player of game.scored) {
-    console.log(player);
-    scorers[player] ? scorers[player]++ : (scorers[player] = 1)
+  console.log(player);
+  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 }
 console.log(scorers);
 
@@ -158,17 +162,17 @@ GOOD LUCK 😀
 */
 
 const gameEvents = new Map([
-  [17, '⚽️ GOAL'],
-  [36, '🔁 Substitution'],
-  [47, '⚽️ GOAL'],
-  [61, '🔁 Substitution'],
-  [64, '🔶 Yellow card'],
-  [69, '🔴 Red card'],
-  [70, '🔁 Substitution'],
-  [72, '🔁 Substitution'],
-  [76, '⚽️ GOAL'],
-  [80, '⚽️ GOAL'],
-  [92, '🔶 Yellow card'],
+  [17, "⚽️ GOAL"],
+  [36, "🔁 Substitution"],
+  [47, "⚽️ GOAL"],
+  [61, "🔁 Substitution"],
+  [64, "🔶 Yellow card"],
+  [69, "🔴 Red card"],
+  [70, "🔁 Substitution"],
+  [72, "🔁 Substitution"],
+  [76, "⚽️ GOAL"],
+  [80, "⚽️ GOAL"],
+  [92, "🔶 Yellow card"],
 ]);
 
 // 1.
@@ -196,21 +200,21 @@ for (const [t, eve] of gameEvents) {
 // String Methods Practice
 
 const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+  "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
 
 // 🔴 Delayed Departure from FAO to TXL (11h25)
 //              Arrival from BRU to FAO (11h45)
 //   🔴 Delayed Arrival from HEL to FAO (12h05)
 //            Departure from FAO to LIS (12h30)
 
-const getCode = str => str.slice(0, 3).toUpperCase();
+const getCode = (str) => str.slice(0, 3).toUpperCase();
 
-for (const flight of flights.split('+')) {
-  const [type, from, to, time] = flight.split(';');
-  const output = `${type.startsWith('_Delayed') ? '🔴' : ''}${type.replaceAll(
-    '_',
-    ' '
-  )} ${getCode(from)} ${getCode(to)} (${time.replace(':', 'h')})`.padStart(36);
+for (const flight of flights.split("+")) {
+  const [type, from, to, time] = flight.split(";");
+  const output = `${type.startsWith("_Delayed") ? "🔴" : ""}${type.replaceAll(
+    "_",
+    " "
+  )} ${getCode(from)} ${getCode(to)} (${time.replace(":", "h")})`.padStart(36);
   console.log(output);
 }
 
@@ -246,22 +250,350 @@ Afterwards, test with your own test data!
 GOOD LUCK 😀
 */
 
+document.body.append(document.createElement("textarea"));
+document.body.append(document.createElement("button"));
 
-document.body.append(document.createElement('textarea'));
-document.body.append(document.createElement('button'));
-
-document.querySelector('button').addEventListener('click', function () {
-  const text = document.querySelector('textarea').value;
-  const rows = text.split('\n');
+document.querySelector("button").addEventListener("click", function () {
+  const text = document.querySelector("textarea").value;
+  const rows = text.split("\n");
 
   for (const [i, row] of rows.entries()) {
-    const [first, second] = row.toLowerCase().trim().split('_');
+    const [first, second] = row.toLowerCase().trim().split("_");
 
     const output = `${first}${second.replace(
       second[0],
       second[0].toUpperCase()
     )}`;
-    console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
+    console.log(`${output.padEnd(20)}${"✅".repeat(i + 1)}`);
   }
 });
 
+//
+
+// const game = {
+//   team1: "Bayern Munich",
+//   team2: "Borrussia Dortmund",
+//   players: [
+//     [
+//       "Neuer",
+//       "Pavard",
+//       "Martinez",
+//       "Alaba",
+//       "Davies",
+//       "Kimmich",
+//       "Goretzka",
+//       "Coman",
+//       "Muller",
+//       "Gnarby",
+//       "Lewandowski",
+//     ],
+//     [
+//       "Burki",
+//       "Schulz",
+//       "Hummels",
+//       "Akanji",
+//       "Hakimi",
+//       "Weigl",
+//       "Witsel",
+//       "Hazard",
+//       "Brandt",
+//       "Sancho",
+//       "Gotze",
+//     ],
+//   ],
+//   score: "4:0",
+//   scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+//   date: "Nov 9th, 2037",
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+// };
+
+// //
+
+// // Coding practice
+
+// // 1.
+// // let player1 = game.players[0];
+// // let player2 = game.players[1];
+
+// const [players1, players2] = game.players;
+
+// // 2.
+// let [gk, ...fieldPlayers] = players1;
+
+// // 3.
+// let allPlayers = [...players1, ...players2];
+
+// // 4.
+// let players1Final = ["Thiago", "Coutinho", "Perisic", ...players1];
+
+// // 5.
+// // const team1 = game.odds.team1;
+// // const team2 = game.odds.team2;
+// // const draw = game.odds.x;
+
+// // const { team1, team2, x: draw } = game.odds;
+
+// const {
+//   odds: { team1, team2, x: draw },
+// } = game;
+
+// // 6.
+// function printGoals(...players) {
+//   for (const player of players) {
+//     let playerCount = players.filter((p) => p === player).length;
+//     // console.log(`Player ${player} scored ${playerCount} goals.`);
+//   }
+//   // console.log(`Players scored ${players.length} goals.`);
+// }
+// printGoals(...game.scored);
+
+// // 7.
+// team1 < team2 && console.log("Team 1 is more likely to win");
+// team1 > team2 && console.log("Team 2 is more likely to win");
+
+// // Addition solutions
+// // 1.
+// for (let i = 0; i < game.scored.length; i++) {
+//   console.log(`Goal ${i + 1}: scored by ${game.scored[i]}`);
+// }
+
+// for (const [i, player] of game.scored.entries())
+//   console.log(`Goal ${i + 1}: scored by ${player}`);
+
+// // 2.
+// for (const [key, values] of Object.entries(game.odds)) {
+//   // console.log(key);
+//   key === "x"
+//     ? console.log(`The draw average is ${values}`)
+//     : console.log(`The ${game[key]} average is ${values}`);
+//   // console.log(`The ${game[key]} average is ${values}`);
+// }
+
+// // let average = 0;
+// // for (const [key, values] of Object.entries(game.odds)) {
+// //   average += values;
+// //   console.log(average / Object.entries(game.odds).length);
+// // }
+
+// let average = 0;
+// for (const odd of Object.values(game.odds)) {
+//   average += odd;
+// }
+// average /= Object.values(game.odds).length;
+
+// // 3.
+// for (const [team, odd] of Object.entries(game.odds)) {
+//   const teamStr = team === "x" ? "draw" : `victory ${game[team]}`;
+//   console.log(`Odd of ${teamStr} is ${odd}`);
+// }
+
+// const question = new Map();
+// console.log(question);
+// question.set("question", "What is the best programming language");
+// console.log(question);
+
+// // Coding challenge
+
+// const gameEvents = new Map([
+//   [17, "⚽️ GOAL"],
+//   [36, "🔁 Substitution"],
+//   [47, "⚽️ GOAL"],
+//   [61, "🔁 Substitution"],
+//   [64, "🔶 Yellow card"],
+//   [69, "🔴 Red card"],
+//   [70, "🔁 Substitution"],
+//   [72, "🔁 Substitution"],
+//   [76, "⚽️ GOAL"],
+//   [80, "⚽️ GOAL"],
+//   [92, "🔶 Yellow card"],
+// ]);
+
+// // 1.
+// // const events = [];
+// // for (const [min, event] of gameEvents) {
+// //   events.push(event);
+// // }
+
+// // console.log(new Set(events));
+
+// const events = [...new Set(gameEvents.values())];
+// console.log(events);
+// // 2.
+// gameEvents.delete(64);
+// console.log(gameEvents);
+
+// // 3.
+// console.log(gameEvents.size);
+// console.log(
+//   `An event happened on an average every ${90 / gameEvents.size} minutes`
+// );
+
+// // 4.
+// for (const [min, event] of gameEvents) {
+//   console.log(`[${min < 45 ? "FIRST HALF" : "SECOND HALF"}] ${min}: ${event}`);
+// }
+
+// const airline = "TAP Air Nigeria";
+// console.log(airline.slice(2, -2));
+// console.log(airline);
+
+// // Learning the call function
+// const luftansa = {
+//   airline: "Luftansa",
+//   iataCode: "LH",
+//   bookings: [],
+
+//   book: function (flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+//     );
+//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+//   },
+// };
+
+// const eurowings = {
+//   airline: "Eurowings",
+//   iataCode: "EW",
+//   bookings: [],
+// };
+
+// const billyair = {
+//   airline: "BillyAir",
+//   iataCode: "BA",
+//   bookings: [],
+// };
+
+// const book = luftansa.book;
+
+// book.call(eurowings, 818, "BillyTrente");
+// book.call(luftansa, 234, "Phosah");
+
+// console.log(eurowings);
+// console.log(luftansa);
+
+// // Bind method
+// const bookBA = book.bind(billyair);
+// bookBA(18, "Billy 30");
+// bookBA(13, "Aise Dark");
+
+// console.log(billyair);
+
+// luftansa.planes = 200;
+// luftansa.buyPlane = function () {
+//   console.log(this);
+
+//   this.planes++;
+//   console.log(`${this.planes}`);
+// };
+
+// // luftansa.buyPlane();
+
+// document
+//   .querySelector(".buy")
+//   .addEventListener("click", luftansa.buyPlane.bind(luftansa));
+
+// const addTax = (rate, value) => value + value * rate;
+// console.log(addTax(0.2, 250));
+
+// const addVAT = addTax.bind(null, 0.23);
+
+// console.log(addVAT(160));
+
+// const calculateTAX = function (value) {
+//   return function (rate) {
+//     return value + value * rate;
+//     // console.log(`Task added: ${value + value * rate}`);
+//   };
+// };
+
+// const addVAT2 = calculateTAX(100);
+// console.log(addVAT2(0.23));
+
+// calculateTAX(300)(0.23);
+
+// // Coding challenge
+// const poll = {
+//   question: "What is your favorite programming language?",
+//   options: ["0: Javascript", "1: Python", "2: Rust", "3: C++"],
+//   answers: new Array(4).fill(0),
+//   // answers: [0, 1, 2, 3],
+
+//   registerNewAnswer: function () {
+//     console.log(this.options.join("\n"));
+
+//     // console.log(this.question);
+//     // for (const [key, value] of Object.entries(this.options)) {
+//     //   console.log(value);
+//     // }
+
+//     const answer = Number(
+//       prompt(
+//         `${this.question}\n${this.options.join("\n")}\n(Write option number)`
+//       )
+//     );
+
+//     // My working solution refactored
+//     // if (isNaN(answer)) {
+//     //   return;
+//     // } else {
+//     //   for (const [key, value] of Object.entries(this.answers)) {
+//     //     if (key == answer) {
+//     //       this.answers[answer]++;
+//     //     }
+//     //   }
+//     //   // console.log(this.answers);
+//     // }
+
+//     answer < this.answers.length &&
+//       typeof answer === "number" &&
+//       this.answers[answer]++;
+
+//     this.displayResults();
+//     // this.displayResults("string");
+//   },
+
+//   displayResults(type = "array") {
+//     if (type === "array") {
+//       console.log(this.answers);
+//     } else if (type === "string") {
+//       console.log(`Poll results are ${this.answers.join(",")}`);
+//     }
+//   },
+// };
+
+// document
+//   .querySelector(".poll")
+//   .addEventListener("click", poll.registerNewAnswer.bind(poll));
+
+// poll.displayResults.call({ answers: [5, 4, 5] });
+// poll.displayResults.call({ answers: [1, 2, 5, 4, 5] }, "string");
+
+// const secureBooking = function () {
+//   let passengerCount = 0;
+
+//   return function () {
+//     passengerCount++;
+//     console.log(`${passengerCount} passengers`);
+//   };
+// };
+
+// const newBooking = secureBooking();
+
+// newBooking();
+// newBooking();
+// newBooking();
+// newBooking();
+
+// (function () {
+//   const header = document.querySelector("h1");
+//   header.style.color = "red";
+
+//   document.body.addEventListener("click", function () {
+//     console.log("clicked");
+//     header.style.color = "blue";
+//   });
+// })();
