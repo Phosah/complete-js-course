@@ -61,38 +61,36 @@ const game = {
 };
 
 // 1.
-const [player1, player2] = game.players;
-console.log(player1, player2);
+const [players1, players2] = game.players;
 
 // 2.
-const [gk, ...fieldPlayers] = player1;
-console.log(gk, fieldPlayers);
+let [gk, ...fieldPlayers] = players1;
 
 // 3.
-const allPlayers = [...player1, ...player2];
-console.log(allPlayers);
+let allPlayers = [...players1, ...players2];
 
 // 4.
-const players1Final = ["Thiago", "Coutinho", "Perisic", ...player1];
-console.log(players1Final);
+let players1Final = ["Thiago", "Coutinho", "Perisic", ...players1];
 
-5;
+// const { team1, team2, x: draw } = game.odds;
+
 const {
-  odds: { team1, x: draw, team2 },
+  odds: { team1, team2, x: draw },
 } = game;
-console.log(team1, team2, draw);
 
 // 6.
 function printGoals(...players) {
-  console.log(
-    `The game ended in a dramatic ${game.score} win with goals scored by ${players}`
-  );
+  for (const player of players) {
+    let playerCount = players.filter((p) => p === player).length;
+    // console.log(`Player ${player} scored ${playerCount} goals.`);
+  }
+  // console.log(`Players scored ${players.length} goals.`);
 }
-printGoals("Davies", "Muller", "Lewandowski", "Kimmich");
 printGoals(...game.scored);
 
 // 7.
 team1 < team2 && console.log("Team 1 is more likely to win");
+team1 > team2 && console.log("Team 2 is more likely to win");
 
 ///////////////////////////////////////
 // Coding Challenge #2
@@ -127,12 +125,10 @@ for (const [i, player] of game.scored.entries()) {
 const odds = Object.values(game.odds);
 let average = 0;
 for (const odd of odds) average += odd;
-console.log(average);
 average /= odds.length;
 console.log(average);
 
 // 3.
-console.log(Object.entries(game.odds));
 for (const [team, odd] of Object.entries(game.odds)) {
   const teamStr = team === "x" ? "draw" : `victory ${game[team]}`;
   console.log(`Odd of ${teamStr} ${odd}`);
@@ -270,330 +266,197 @@ document.querySelector("button").addEventListener("click", function () {
 
 //
 
-// const game = {
-//   team1: "Bayern Munich",
-//   team2: "Borrussia Dortmund",
-//   players: [
-//     [
-//       "Neuer",
-//       "Pavard",
-//       "Martinez",
-//       "Alaba",
-//       "Davies",
-//       "Kimmich",
-//       "Goretzka",
-//       "Coman",
-//       "Muller",
-//       "Gnarby",
-//       "Lewandowski",
-//     ],
-//     [
-//       "Burki",
-//       "Schulz",
-//       "Hummels",
-//       "Akanji",
-//       "Hakimi",
-//       "Weigl",
-//       "Witsel",
-//       "Hazard",
-//       "Brandt",
-//       "Sancho",
-//       "Gotze",
-//     ],
-//   ],
-//   score: "4:0",
-//   scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
-//   date: "Nov 9th, 2037",
-//   odds: {
-//     team1: 1.33,
-//     x: 3.25,
-//     team2: 6.5,
-//   },
-// };
+// Coding practice
 
-// //
+// Addition solutions
+// 1.
+for (let i = 0; i < game.scored.length; i++) {
+  console.log(`Goal ${i + 1}: scored by ${game.scored[i]}`);
+}
 
-// // Coding practice
+for (const [i, player] of game.scored.entries())
+  console.log(`Goal ${i + 1}: scored by ${player}`);
 
-// // 1.
-// // let player1 = game.players[0];
-// // let player2 = game.players[1];
+// 2.
+for (const [key, values] of Object.entries(game.odds)) {
+  // console.log(key);
+  key === "x"
+    ? console.log(`The draw average is ${values}`)
+    : console.log(`The ${game[key]} average is ${values}`);
+  // console.log(`The ${game[key]} average is ${values}`);
+}
 
-// const [players1, players2] = game.players;
+average /= Object.values(game.odds).length;
 
-// // 2.
-// let [gk, ...fieldPlayers] = players1;
+// 3.
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamStr = team === "x" ? "draw" : `victory ${game[team]}`;
+  console.log(`Odd of ${teamStr} is ${odd}`);
+}
 
-// // 3.
-// let allPlayers = [...players1, ...players2];
+const question = new Map();
+console.log(question);
+question.set("question", "What is the best programming language");
+console.log(question);
 
-// // 4.
-// let players1Final = ["Thiago", "Coutinho", "Perisic", ...players1];
+// Coding challenge
+const airline = "TAP Air Nigeria";
+console.log(airline.slice(2, -2));
+console.log(airline);
 
-// // 5.
-// // const team1 = game.odds.team1;
-// // const team2 = game.odds.team2;
-// // const draw = game.odds.x;
+// Learning the call function
+const luftansa = {
+  airline: "Luftansa",
+  iataCode: "LH",
+  bookings: [],
 
-// // const { team1, team2, x: draw } = game.odds;
+  book: function (flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
 
-// const {
-//   odds: { team1, team2, x: draw },
-// } = game;
+const eurowings = {
+  airline: "Eurowings",
+  iataCode: "EW",
+  bookings: [],
+};
 
-// // 6.
-// function printGoals(...players) {
-//   for (const player of players) {
-//     let playerCount = players.filter((p) => p === player).length;
-//     // console.log(`Player ${player} scored ${playerCount} goals.`);
-//   }
-//   // console.log(`Players scored ${players.length} goals.`);
-// }
-// printGoals(...game.scored);
+const billyair = {
+  airline: "BillyAir",
+  iataCode: "BA",
+  bookings: [],
+};
 
-// // 7.
-// team1 < team2 && console.log("Team 1 is more likely to win");
-// team1 > team2 && console.log("Team 2 is more likely to win");
+const book = luftansa.book;
 
-// // Addition solutions
-// // 1.
-// for (let i = 0; i < game.scored.length; i++) {
-//   console.log(`Goal ${i + 1}: scored by ${game.scored[i]}`);
-// }
+book.call(eurowings, 818, "BillyTrente");
+book.call(luftansa, 234, "Phosah");
 
-// for (const [i, player] of game.scored.entries())
-//   console.log(`Goal ${i + 1}: scored by ${player}`);
+console.log(eurowings);
+console.log(luftansa);
 
-// // 2.
-// for (const [key, values] of Object.entries(game.odds)) {
-//   // console.log(key);
-//   key === "x"
-//     ? console.log(`The draw average is ${values}`)
-//     : console.log(`The ${game[key]} average is ${values}`);
-//   // console.log(`The ${game[key]} average is ${values}`);
-// }
+// Bind method
+const bookBA = book.bind(billyair);
+bookBA(18, "Billy 30");
+bookBA(13, "Aise Dark");
 
-// // let average = 0;
-// // for (const [key, values] of Object.entries(game.odds)) {
-// //   average += values;
-// //   console.log(average / Object.entries(game.odds).length);
-// // }
+console.log(billyair);
 
-// let average = 0;
-// for (const odd of Object.values(game.odds)) {
-//   average += odd;
-// }
-// average /= Object.values(game.odds).length;
+luftansa.planes = 200;
+luftansa.buyPlane = function () {
+  console.log(this);
 
-// // 3.
-// for (const [team, odd] of Object.entries(game.odds)) {
-//   const teamStr = team === "x" ? "draw" : `victory ${game[team]}`;
-//   console.log(`Odd of ${teamStr} is ${odd}`);
-// }
+  this.planes++;
+  console.log(`${this.planes}`);
+};
 
-// const question = new Map();
-// console.log(question);
-// question.set("question", "What is the best programming language");
-// console.log(question);
+// luftansa.buyPlane();
 
-// // Coding challenge
+document
+  .querySelector(".buy")
+  .addEventListener("click", luftansa.buyPlane.bind(luftansa));
 
-// const gameEvents = new Map([
-//   [17, "⚽️ GOAL"],
-//   [36, "🔁 Substitution"],
-//   [47, "⚽️ GOAL"],
-//   [61, "🔁 Substitution"],
-//   [64, "🔶 Yellow card"],
-//   [69, "🔴 Red card"],
-//   [70, "🔁 Substitution"],
-//   [72, "🔁 Substitution"],
-//   [76, "⚽️ GOAL"],
-//   [80, "⚽️ GOAL"],
-//   [92, "🔶 Yellow card"],
-// ]);
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.2, 250));
 
-// // 1.
-// // const events = [];
-// // for (const [min, event] of gameEvents) {
-// //   events.push(event);
-// // }
+const addVAT = addTax.bind(null, 0.23);
 
-// // console.log(new Set(events));
+console.log(addVAT(160));
 
-// const events = [...new Set(gameEvents.values())];
-// console.log(events);
-// // 2.
-// gameEvents.delete(64);
-// console.log(gameEvents);
+const calculateTAX = function (value) {
+  return function (rate) {
+    return value + value * rate;
+    // console.log(`Task added: ${value + value * rate}`);
+  };
+};
 
-// // 3.
-// console.log(gameEvents.size);
-// console.log(
-//   `An event happened on an average every ${90 / gameEvents.size} minutes`
-// );
+const addVAT2 = calculateTAX(100);
+console.log(addVAT2(0.23));
 
-// // 4.
-// for (const [min, event] of gameEvents) {
-//   console.log(`[${min < 45 ? "FIRST HALF" : "SECOND HALF"}] ${min}: ${event}`);
-// }
+calculateTAX(300)(0.23);
 
-// const airline = "TAP Air Nigeria";
-// console.log(airline.slice(2, -2));
-// console.log(airline);
+// Coding challenge
+const poll = {
+  question: "What is your favorite programming language?",
+  options: ["0: Javascript", "1: Python", "2: Rust", "3: C++"],
+  answers: new Array(4).fill(0),
+  // answers: [0, 1, 2, 3],
 
-// // Learning the call function
-// const luftansa = {
-//   airline: "Luftansa",
-//   iataCode: "LH",
-//   bookings: [],
+  registerNewAnswer: function () {
+    console.log(this.options.join("\n"));
 
-//   book: function (flightNum, name) {
-//     console.log(
-//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
-//     );
-//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
-//   },
-// };
+    // console.log(this.question);
+    // for (const [key, value] of Object.entries(this.options)) {
+    //   console.log(value);
+    // }
 
-// const eurowings = {
-//   airline: "Eurowings",
-//   iataCode: "EW",
-//   bookings: [],
-// };
+    const answer = Number(
+      prompt(
+        `${this.question}\n${this.options.join("\n")}\n(Write option number)`
+      )
+    );
 
-// const billyair = {
-//   airline: "BillyAir",
-//   iataCode: "BA",
-//   bookings: [],
-// };
+    // My working solution refactored
+    // if (isNaN(answer)) {
+    //   return;
+    // } else {
+    //   for (const [key, value] of Object.entries(this.answers)) {
+    //     if (key == answer) {
+    //       this.answers[answer]++;
+    //     }
+    //   }
+    //   // console.log(this.answers);
+    // }
 
-// const book = luftansa.book;
+    answer < this.answers.length &&
+      typeof answer === "number" &&
+      this.answers[answer]++;
 
-// book.call(eurowings, 818, "BillyTrente");
-// book.call(luftansa, 234, "Phosah");
+    this.displayResults();
+    // this.displayResults("string");
+  },
 
-// console.log(eurowings);
-// console.log(luftansa);
+  displayResults(type = "array") {
+    if (type === "array") {
+      console.log(this.answers);
+    } else if (type === "string") {
+      console.log(`Poll results are ${this.answers.join(",")}`);
+    }
+  },
+};
 
-// // Bind method
-// const bookBA = book.bind(billyair);
-// bookBA(18, "Billy 30");
-// bookBA(13, "Aise Dark");
+document
+  .querySelector(".poll")
+  .addEventListener("click", poll.registerNewAnswer.bind(poll));
 
-// console.log(billyair);
+poll.displayResults.call({ answers: [5, 4, 5] });
+poll.displayResults.call({ answers: [1, 2, 5, 4, 5] }, "string");
 
-// luftansa.planes = 200;
-// luftansa.buyPlane = function () {
-//   console.log(this);
+const secureBooking = function () {
+  let passengerCount = 0;
 
-//   this.planes++;
-//   console.log(`${this.planes}`);
-// };
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
 
-// // luftansa.buyPlane();
+const newBooking = secureBooking();
 
-// document
-//   .querySelector(".buy")
-//   .addEventListener("click", luftansa.buyPlane.bind(luftansa));
+newBooking();
+newBooking();
+newBooking();
+newBooking();
 
-// const addTax = (rate, value) => value + value * rate;
-// console.log(addTax(0.2, 250));
+(function () {
+  const header = document.querySelector("h1");
+  header.style.color = "red";
 
-// const addVAT = addTax.bind(null, 0.23);
-
-// console.log(addVAT(160));
-
-// const calculateTAX = function (value) {
-//   return function (rate) {
-//     return value + value * rate;
-//     // console.log(`Task added: ${value + value * rate}`);
-//   };
-// };
-
-// const addVAT2 = calculateTAX(100);
-// console.log(addVAT2(0.23));
-
-// calculateTAX(300)(0.23);
-
-// // Coding challenge
-// const poll = {
-//   question: "What is your favorite programming language?",
-//   options: ["0: Javascript", "1: Python", "2: Rust", "3: C++"],
-//   answers: new Array(4).fill(0),
-//   // answers: [0, 1, 2, 3],
-
-//   registerNewAnswer: function () {
-//     console.log(this.options.join("\n"));
-
-//     // console.log(this.question);
-//     // for (const [key, value] of Object.entries(this.options)) {
-//     //   console.log(value);
-//     // }
-
-//     const answer = Number(
-//       prompt(
-//         `${this.question}\n${this.options.join("\n")}\n(Write option number)`
-//       )
-//     );
-
-//     // My working solution refactored
-//     // if (isNaN(answer)) {
-//     //   return;
-//     // } else {
-//     //   for (const [key, value] of Object.entries(this.answers)) {
-//     //     if (key == answer) {
-//     //       this.answers[answer]++;
-//     //     }
-//     //   }
-//     //   // console.log(this.answers);
-//     // }
-
-//     answer < this.answers.length &&
-//       typeof answer === "number" &&
-//       this.answers[answer]++;
-
-//     this.displayResults();
-//     // this.displayResults("string");
-//   },
-
-//   displayResults(type = "array") {
-//     if (type === "array") {
-//       console.log(this.answers);
-//     } else if (type === "string") {
-//       console.log(`Poll results are ${this.answers.join(",")}`);
-//     }
-//   },
-// };
-
-// document
-//   .querySelector(".poll")
-//   .addEventListener("click", poll.registerNewAnswer.bind(poll));
-
-// poll.displayResults.call({ answers: [5, 4, 5] });
-// poll.displayResults.call({ answers: [1, 2, 5, 4, 5] }, "string");
-
-// const secureBooking = function () {
-//   let passengerCount = 0;
-
-//   return function () {
-//     passengerCount++;
-//     console.log(`${passengerCount} passengers`);
-//   };
-// };
-
-// const newBooking = secureBooking();
-
-// newBooking();
-// newBooking();
-// newBooking();
-// newBooking();
-
-// (function () {
-//   const header = document.querySelector("h1");
-//   header.style.color = "red";
-
-//   document.body.addEventListener("click", function () {
-//     console.log("clicked");
-//     header.style.color = "blue";
-//   });
-// })();
+  document.body.addEventListener("click", function () {
+    console.log("clicked");
+    header.style.color = "blue";
+  });
+})();
