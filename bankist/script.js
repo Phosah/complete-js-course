@@ -84,6 +84,15 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
+// let acc;
+// for (const account of accounts) {
+//   if (account.owner === 'Sarah Smith') {
+//     acc = account;
+//     break;
+//   }
+// }
+// console.log(acc);
+
 // Elements
 const labelWelcome = document.querySelector('.welcome');
 const labelDate = document.querySelector('.date');
